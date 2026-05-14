@@ -1,6 +1,6 @@
 {
   "name": "obsidian-mermaid-maker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Inline GUI editor for Mermaid diagrams in Obsidian",
   "private": true,
   "license": "MIT",
