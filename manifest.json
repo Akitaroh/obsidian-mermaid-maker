@@ -1,0 +1,10 @@
+{
+  "id": "mermaid-maker",
+  "name": "MermaidMaker",
+  "version": "0.1.0",
+  "minAppVersion": "1.4.0",
+  "description": "Inline GUI editor for Mermaid diagrams. Wikilinks, tags, math and rich markdown work inside nodes.",
+  "author": "akitaroh",
+  "authorUrl": "https://github.com/Akitaroh",
+  "isDesktopOnly": false
+}

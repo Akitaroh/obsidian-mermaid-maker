@@ -1,0 +1,28 @@
+{
+  "name": "obsidian-mermaid-maker",
+  "version": "0.1.0",
+  "description": "Inline GUI editor for Mermaid diagrams in Obsidian",
+  "private": true,
+  "license": "MIT",
+  "author": "akitaroh",
+  "type": "module",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "node esbuild.config.mjs production",
+    "version": "node version-bump.mjs && git add manifest.json versions.json"
+  },
+  "dependencies": {
+    "@xyflow/react": "^12.3.5",
+    "dagre": "^0.8.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/dagre": "^0.7.52",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "esbuild": "^0.23.0",
+    "obsidian": "^1.4.11",
+    "typescript": "^5.4.0"
+  }
+}
