@@ -49,7 +49,7 @@ const EDITABLE_FLAG_LINE = '%%editable%%';
  *     `a"b`   → `"a&quot;b"`
  */
 function quoteLabelIfNeeded(label: string): string {
-  if (/[\[\](){}|"]/.test(label)) {
+  if (/[[\](){}|"]/.test(label)) {
     return `"${label.replace(/"/g, '&quot;')}"`;
   }
   return label;
@@ -96,17 +96,16 @@ export async function renderMmEditableFlow(
     el.empty();
     const note = el.createDiv({ cls: 'mm-edit-hint' });
     note.textContent = '✏️ GUI 編集は読み取りビュー (cmd+e) で利用できます';
-    note.style.cssText = 'padding:8px;color:var(--text-muted);font-size:12px;';
     return;
   }
 
   const parseResult = parseMermaid(source);
   if (!parseResult.ok) {
     el.empty();
-    const err = el.createEl('pre', {
-      text: `MermaidMaker parse error: ${parseResult.errors.map((e) => e.message).join('\n')}`,
+    el.createEl('pre', {
+      cls: 'mm-error',
+      text: `MermaidMaker parse error: ${parseResult.error.message}`,
     });
-    err.style.color = 'var(--text-error)';
     return;
   }
 
@@ -138,7 +137,7 @@ export async function renderMmEditableFlow(
     label: e.label ?? undefined,
   }));
 
-  const theme: 'light' | 'dark' = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
+  const theme: 'light' | 'dark' = activeDocument.body.classList.contains('theme-dark') ? 'dark' : 'light';
 
   // ---- write-back ----------------------------------------------------------
   let pendingTimer: number | null = null;

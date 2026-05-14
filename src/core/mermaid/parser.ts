@@ -120,7 +120,7 @@ export function parseMermaid(text: string): ParseResult {
     // ノード単独行
     try {
       ensureNode(nodes, line);
-    } catch (err) {
+    } catch {
       return {
         ok: false,
         error: {

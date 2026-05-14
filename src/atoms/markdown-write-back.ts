@@ -27,8 +27,8 @@ export function writeBackMmCodeBlock(
     return { ok: false, reason: 'no-section-info' };
   }
 
-  const view = app.workspace.activeLeaf?.view;
-  if (!(view instanceof MarkdownView)) {
+  const view = app.workspace.getActiveViewOfType(MarkdownView);
+  if (!view) {
     return { ok: false, reason: 'not-markdown-view' };
   }
 

@@ -20,22 +20,9 @@ let measurerEl: HTMLDivElement | null = null;
 
 function ensureMeasurer(): HTMLDivElement {
   if (measurerEl && measurerEl.isConnected) return measurerEl;
-  const div = document.createElement('div');
-  div.style.cssText = [
-    'position: absolute',
-    'visibility: hidden',
-    'pointer-events: none',
-    'top: 0',
-    'left: -9999px',
-    // インラインで折り返し無しの「自然な 1 行サイズ」を取る。
-    // mermaid 側で box padding が足されるので、ここでは text 領域のみを返す。
-    'max-width: none',
-    'white-space: nowrap',
-    'display: inline-block',
-    'font-size: var(--font-text-size, 16px)',
-    'line-height: 1.5',
-  ].join(';');
-  document.body.appendChild(div);
+  const div = activeDocument.createElement('div');
+  div.classList.add('mm-measurer');
+  activeDocument.body.appendChild(div);
   measurerEl = div;
   return div;
 }

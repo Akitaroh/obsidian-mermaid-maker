@@ -1,6 +1,7 @@
 import { Notice, Plugin } from 'obsidian';
 import { renderMmCodeBlock } from './arrows/mm-codeblock-render.js';
 import { renderMmEditableFlow } from './arrows/mm-editable-flow.js';
+import './styles.css';
 
 /**
  * source の先頭行に `%% editable %%` または `%%editable%%` があれば editable mode。
@@ -44,12 +45,10 @@ export default class MermaidMakerPlugin extends Plugin {
           console.error('[mermaid-maker] render error', e);
           new Notice('MermaidMaker: failed to render diagram');
           el.empty();
-          const pre = el.createEl('pre', {
+          el.createEl('pre', {
             cls: 'mm-error',
             text: `MermaidMaker render error: ${(e as Error)?.message ?? e}`,
           });
-          pre.style.color = 'var(--text-error)';
-          pre.style.whiteSpace = 'pre-wrap';
         }
       });
     });

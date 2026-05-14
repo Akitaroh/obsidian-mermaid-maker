@@ -33,66 +33,7 @@ import {
   type Connection,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-
-const STYLE_ID = 'mermaid-maker-canvas-style';
-function injectStyles() {
-  if (document.getElementById(STYLE_ID)) return;
-  const style = document.createElement('style');
-  style.id = STYLE_ID;
-  style.textContent = `
-    .react-flow__node-mm {
-      background: var(--background-secondary);
-      border: 1px solid var(--background-modifier-border);
-      border-radius: 6px;
-      padding: 8px 12px;
-      font-size: 13px;
-      color: var(--text-normal);
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    }
-    .react-flow__node-mm.selected {
-      border-color: var(--interactive-accent);
-      box-shadow: 0 0 0 2px var(--interactive-accent-hover, var(--interactive-accent));
-    }
-    /* shape variants */
-    .react-flow__node-mm.mm-shape-rounded {
-      border-radius: 28px;
-    }
-    .react-flow__node-mm.mm-shape-circle {
-      border-radius: 50%;
-      padding: 4px;
-    }
-    .react-flow__node-mm.mm-shape-doubleCircle {
-      border-radius: 50%;
-      padding: 4px;
-      box-shadow: inset 0 0 0 2px var(--background-primary), inset 0 0 0 3px var(--background-modifier-border);
-    }
-    .react-flow__node-mm .mm-node-content {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-align: center;
-    }
-    .react-flow__node-mm .mm-node-content > p {
-      margin: 0;
-      padding: 0;
-    }
-    .mm-add-btn {
-      background: var(--interactive-accent);
-      color: var(--text-on-accent);
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-    .mm-add-btn:hover { opacity: 0.85; }
-  `;
-  document.head.appendChild(style);
-}
+// プラグイン固有スタイルは src/styles.css に集約 (Obsidian 規約: 動的 <style> 禁止)
 
 export type RenderLabelFn = (label: string, el: HTMLElement) => () => void;
 
@@ -207,8 +148,8 @@ function CanvasInner({ nodes, edges, theme, onChange, onEditLabel }: InnerProps)
           ...es,
           {
             id,
-            source: conn.source as string,
-            target: conn.target as string,
+            source: conn.source,
+            target: conn.target,
           },
         ];
       });
@@ -297,20 +238,8 @@ function CanvasInner({ nodes, edges, theme, onChange, onEditLabel }: InnerProps)
 }
 
 export function mountXyflow(parent: HTMLElement, options: MountOptions): MountHandle {
-  injectStyles();
   parent.empty();
-  const wrapper = parent.createDiv();
-  wrapper.style.cssText = [
-    'display: block',
-    'box-sizing: border-box',
-    'height: 420px',
-    'width: 100%',
-    'min-width: 320px',
-    'border: 1px solid var(--background-modifier-border)',
-    'border-radius: 6px',
-    'overflow: hidden',
-    'position: relative',
-  ].join(';');
+  const wrapper = parent.createDiv({ cls: 'mm-canvas-wrapper' });
 
   const root: Root = createRoot(wrapper);
 

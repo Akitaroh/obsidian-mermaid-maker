@@ -30,11 +30,13 @@ const THEME_DARK = {
 
 export type MermaidInstance = {
   render: (id: string, source: string) => Promise<{ svg: string }>;
+  initialize: (config: unknown) => void;
+  mermaidAPI?: { setConfig: (config: unknown) => void };
 };
 
 export async function loadMermaidConfigured(): Promise<MermaidInstance> {
-  const mermaid = await loadMermaid();
-  const config = document.body.classList.contains('theme-dark')
+  const mermaid = (await loadMermaid()) as MermaidInstance;
+  const config = activeDocument.body.classList.contains('theme-dark')
     ? THEME_DARK
     : THEME_LIGHT;
   mermaid.initialize(config);
@@ -42,5 +44,5 @@ export async function loadMermaidConfigured(): Promise<MermaidInstance> {
   if (mermaid.mermaidAPI?.setConfig) {
     mermaid.mermaidAPI.setConfig(config);
   }
-  return mermaid as MermaidInstance;
+  return mermaid;
 }

@@ -34,11 +34,10 @@ class LabelEditModal extends Modal {
     const input = contentEl.createEl('input', {
       type: 'text',
       value: this.initial,
+      cls: 'mm-label-edit-input',
     });
-    input.style.cssText = 'width:100%;padding:6px 8px;font-size:14px;';
 
-    const row = contentEl.createDiv();
-    row.style.cssText = 'display:flex;justify-content:flex-end;gap:8px;margin-top:12px;';
+    const row = contentEl.createDiv({ cls: 'mm-label-edit-actions' });
     const cancel = row.createEl('button', { text: 'キャンセル' });
     const ok = row.createEl('button', { text: 'OK', cls: 'mod-cta' });
 
@@ -59,7 +58,7 @@ class LabelEditModal extends Modal {
       }
     });
 
-    setTimeout(() => {
+    window.setTimeout(() => {
       input.focus();
       input.select();
     }, 0);
