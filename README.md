@@ -13,6 +13,10 @@ diagram.
 
 The world's first inline GUI Mermaid editor for Obsidian.
 
+<p align="center">
+  <img src="docs/images/canvas-overview.png" width="700" alt="Canvas overview" />
+</p>
+
 ---
 
 ## Features
@@ -27,6 +31,12 @@ The world's first inline GUI Mermaid editor for Obsidian.
 - 📐 **dagre auto-layout** for newly added nodes
 - 💾 **Two-way sync**: edits write back to the Mermaid block, external
   Mermaid text edits flow back into the canvas
+
+<p align="center">
+  <img src="docs/images/rich-labels.png" width="600" alt="Rich labels: wikilinks, tags, math, bold inside nodes" />
+  <br>
+  <em>Node labels are rendered through Obsidian's MarkdownRenderer, so wikilinks, tags, math and bold all work inside the diagram.</em>
+</p>
 
 The plugin is **opt-in**: regular ` ```mermaid ` blocks are untouched, only
 ` ```mermaid-maker ` blocks are processed.
@@ -46,6 +56,10 @@ graph LR
 2. Switch the note to **Reading view** (`cmd+e` / `ctrl+e`).
 3. The diagram becomes an editable canvas. Drag, double-click, use the
    `+ Node` button (currently labeled in Japanese — i18n pending).
+
+<p align="center">
+  <img src="docs/images/basic-editable.png" width="600" alt="Editable canvas with + Node button" />
+</p>
 4. Saved automatically (500 ms debounced).
 
 Without `%%editable%%` the block is rendered read-only with rich labels
