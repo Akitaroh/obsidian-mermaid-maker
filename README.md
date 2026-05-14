@@ -2,7 +2,7 @@
 
 > Inline GUI editor for Mermaid diagrams. Drag nodes, click `[[wikilinks]]` inside them, edit visually — all without leaving your note.
 
-[![beta](https://img.shields.io/badge/status-beta-orange)](https://github.com/Akitaroh/mermaid-maker)
+[![beta](https://img.shields.io/badge/status-beta-orange)](https://github.com/Akitaroh/obsidian-mermaid-maker)
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 This plugin turns Mermaid code blocks into a **visual canvas** where you can
@@ -45,7 +45,7 @@ graph LR
 1. Add `%%editable%%` as the first line inside a ` ```mermaid-maker ` block.
 2. Switch the note to **Reading view** (`cmd+e` / `ctrl+e`).
 3. The diagram becomes an editable canvas. Drag, double-click, use the
-   `+ ノード` button.
+   `+ Node` button (currently labeled in Japanese — i18n pending).
 4. Saved automatically (500 ms debounced).
 
 Without `%%editable%%` the block is rendered read-only with rich labels
@@ -62,13 +62,13 @@ The plugin is in **beta**. The fastest way to try it is via
 
 1. Install the BRAT plugin from Obsidian Community Plugins.
 2. Open BRAT settings → **Add Beta plugin**.
-3. Enter `Akitaroh/mermaid-maker` and click **Add Plugin**.
+3. Enter `Akitaroh/obsidian-mermaid-maker` and click **Add Plugin**.
 4. Enable **MermaidMaker** under Community plugins.
 
 ### Manual install
 
 1. Download `main.js`, `manifest.json` and `styles.css` from the
-   [latest release](https://github.com/Akitaroh/mermaid-maker/releases).
+   [latest release](https://github.com/Akitaroh/obsidian-mermaid-maker/releases).
 2. Create `<vault>/.obsidian/plugins/mermaid-maker/` and drop the three
    files in.
 3. Enable in Settings → Community plugins.
@@ -129,8 +129,7 @@ React mounts well.
 
 ## Architecture
 
-Source code at
-[`packages/obsidian/`](https://github.com/Akitaroh/mermaid-maker/tree/main/packages/obsidian).
+Source code in [`src/`](https://github.com/Akitaroh/obsidian-mermaid-maker/tree/main/src).
 
 Implemented with [Zettel-driven development](https://github.com/Akitaroh):
 
